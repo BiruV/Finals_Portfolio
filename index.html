@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.2/tailwind.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <style>
+        @media (max-width: 1520px) {
+            .left-svg {
+                display: none;
+            }
+        }
+
+        /* Small CSS for the mobile nav close */
+        #nav-mobile-btn.close span:first-child {
+            transform: rotate(45deg);
+            top: 4px;
+            position: relative;
+            background: #a0aec0;
+        }
+
+        #nav-mobile-btn.close span:nth-child(2) {
+            transform: rotate(-45deg);
+            margin-top: 0px;
+            background: #a0aec0;
+        }
+
+        /* Parallax effect */
+        .parallax {
+            background-image: url('images/hero-bg.jpg'); /* Update with your image path */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Hover scale */
+        .hover-scale {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.1);
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Hover Effect (Pop-up) */
+        .nav-item {
+            position: relative;
+            display: inline-block;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        /* Pop-up effect on hover */
+        .nav-item:hover {
+            transform: scale(1.1) translateY(-3px); /* Slight pop-up effect */
+            color: #4c51bf; /* Change color to indigo on hover */
+        }
+
+        /* Bubble click effect */
+        .nav-item:active {
+            animation: bubble-pop 0.3s ease-out; /* Bubble pop animation */
+        }
+
+        /* Bubble pop animation */
+        @keyframes bubble-pop {
+            0% {
+                transform: scale(1.1); /* Start with the hover scale */
+            }
+            50% {
+                transform: scale(0.9); /* Shrink to simulate popping effect */
+            }
+            100% {
+                transform: scale(1); /* Return to normal size */
+            }
+        }
+        /* Hover Effect (Pop-up) */
+        .contact-btn {
+            position: relative;
+            display: inline-block;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        /* Pop-up effect on hover */
+        .contact-btn:hover {
+            transform: scale(1.1) translateY(-3px); /* Slight pop-up effect */
+            color: #4c51bf; /* Change color to indigo on hover */
+        }
+
+        /* Bubble click effect */
+        .contact-btn:active {
+            animation: bubble-pop 0.3s ease-out; /* Bubble pop animation */
+        }
+        
+        /* Optional: Add a shadow on hover for more emphasis */
+        .contact-btn:hover {
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Optional: Add a shadow on hover for more emphasis */
+        .nav-item:hover {
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden antialiased">
+    <!-- Add particles.js container -->
+    <div id="particles-js" class="absolute top-0 left-0 w-full h-full"></div>
+
+    <header class="relative z-50 w-full h-24">
+        <div
+        class="container flex items-center justify-center h-full max-w-6xl px-8 mx-auto sm:justify-between xl:px-0">
+
+        <a href="/" class="relative flex items-center h-full font-black leading-none">
+            <img src="images/Logo.png" alt="Logo" class="w-auto h-10">
+            <span class="ml-2text-xl text-gray-800">BuildUp<span class="text-blue-600">.</span></span>
+        </a>
+        
+        <nav id="nav" class="absolute top-0 left-0 z-50 flex-col items-center justify-between hidden w-full h-64 pt-5 mt-24 text-sm text-gray-800 bg-white border-t border-gray-200 md:w-auto md:flex-row md:h-24 lg:text-base md:bg-transparent md:mt-0 md:border-none md:py-0 md:flex md:relative">
+            <a href="/"
+                class="nav-item ml-0 mr-0 font-bold duration-100 md:ml-12 md:mr-3 lg:mr-8 transition-color hover:text-indigo-600">Home</a>
+            <a href="#services"
+                class="nav-item mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-indigo-600">Services</a>
+            <a href="#team"
+                class="nav-item mr-0 font-bold duration-100 md:mr-3 lg:mr-8 transition-color hover:text-indigo-600">Team</a>
+            <a href="#projects"
+                class="nav-item font-bold duration-100 transition-color hover:text-indigo-600">Projects</a>
+            <div class="flex-col block w-full font-medium border-t border-gray-200 md:hidden">
+        </nav>
+        
+
+        <div
+            class="absolute left-0 flex-col items-center justify-center hidden w-full pb-8 mt-48 border-b border-gray-200 md:relative md:w-auto md:bg-transparent md:border-none md:mt-0 md:flex-row md:p-0 md:items-end md:flex md:justify-between">
+          
+            <a href="#contact"
+            class="contact-btn relative z-40 inline-block w-auto h-full px-5 py-3 text-sm font-bold leading-none text-white transition-all duration-100 bg-indigo-700 rounded shadow-md lg:bg-white lg:text-indigo-700 sm:w-full lg:shadow-none hover:shadow-xl">
+            Contact Us! </a>
+            <svg class="absolute top-0 left-0 hidden w-screen max-w-3xl -mt-64 -ml-12 lg:block"
+                viewBox="0 0 818 815" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="c">
+                        <stop stop-color="#E614F2" offset="0%" />
+                        <stop stop-color="#FC3832" offset="100%" />
+                    </linearGradient>
+                    <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="f">
+                        <stop stop-color="#657DE9" offset="0%" />
+                        <stop stop-color="#1C0FD7" offset="100%" />
+                    </linearGradient>
+                    <filter x="-4.7%" y="-3.3%" width="109.3%" height="109.3%" filterUnits="objectBoundingBox"
+                        id="a">
+                        <feOffset dy="8" in="SourceAlpha" result="shadowOffsetOuter1" />
+                        <feGaussianBlur stdDeviation="8" in="shadowOffsetOuter1" result="shadowBlurOuter1" />
+                        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0" in="shadowBlurOuter1" />
+                    </filter>
+                    <filter x="-4.7%" y="-3.3%" width="109.3%" height="109.3%" filterUnits="objectBoundingBox"
+                        id="d">
+                        <feOffset dy="8" in="SourceAlpha" result="shadowOffsetOuter1" />
+                        <feGaussianBlur stdDeviation="8" in="shadowOffsetOuter1" result="shadowBlurOuter1" />
+                        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" in="shadowBlurOuter1" />
+                    </filter>
+                    <path
+                        d="M160.52 108.243h497.445c17.83 0 24.296 1.856 30.814 5.342 6.519 3.486 11.635 8.602 15.12 15.12 3.487 6.52 5.344 12.985 5.344 30.815v497.445c0 17.83-1.857 24.296-5.343 30.814-3.486 6.519-8.602 11.635-15.12 15.12-6.52 3.487-12.985 5.344-30.815 5.344H160.52c-17.83 0-24.296-1.857-30.814-5.343-6.519-3.486-11.635-8.602-15.12-15.12-3.487-6.52-5.343-12.985-5.343-30.815V159.52c0-17.83 1.856-24.296 5.342-30.814 3.486-6.519 8.602-11.635 15.12-15.12 6.52-3.487 12.985-5.343 30.815-5.343z"
+                        id="b" />
+                    <path
+                        d="M159.107 107.829H656.55c17.83 0 24.296 1.856 30.815 5.342 6.518 3.487 11.634 8.602 15.12 15.12 3.486 6.52 5.343 12.985 5.343 30.816V656.55c0 17.83-1.857 24.296-5.343 30.815-3.486 6.518-8.602 11.634-15.12 15.12-6.519 3.486-12.985 5.343-30.815 5.343H159.107c-17.83 0-24.297-1.857-30.815-5.343-6.519-3.486-11.634-8.602-15.12-15.12-3.487-6.519-5.343-12.985-5.343-30.815V159.107c0-17.83 1.856-24.297 5.342-30.815 3.487-6.519 8.602-11.634 15.12-15.12 6.52-3.487 12.985-5.343 30.816-5.343z"
+                        id="e" />
+                </defs>
+                <g fill="none" fill-rule="evenodd" opacity=".9">
+                    <g transform="rotate(65 416.452 409.167)">
+                        <use fill="#000" filter="url(#a)" xlink:href="#b" />
+                        <use fill="url(#c)" xlink:href="#b" />
+                    </g>
+                    <g transform="rotate(29 421.929 414.496)">
+                        <use fill="#000" filter="url(#d)" xlink:href="#e" />
+                        <use fill="url(#f)" xlink:href="#e" />
+                    </g>
+                </g>
+            </svg>
+        </div>
+
+        <div id="nav-mobile-btn"
+            class="absolute top-0 right-0 z-50 block w-6 mt-8 mr-10 cursor-pointer select-none md:hidden sm:mt-10">
+            <span class="block w-full h-1 mt-2 duration-200 transform bg-gray-800 rounded-full sm:mt-1"></span>
+            <span class="block w-full h-1 mt-1 duration-200 transform bg-gray-800 rounded-full"></span>
+        </div>
+
+        </div>
+    </header>
+
+    <!-- Begin Hero Section -->
+    <div class="relative items-center justify-center w-full overflow-x-hidden lg:pt-40 lg:pb-40 xl:pt-40 xl:pb-64 parallax">
+        <div class="container flex flex-col items-center justify-between h-full max-w-6xl px-8 mx-auto -mt-32 lg:flex-row xl:px-0">
+            <div class="z-30 flex flex-col items-center w-full max-w-xl pt-48 text-center lg:items-start lg:w-1/2 lg:pt-20 xl:pt-40 lg:text-left" data-aos="fade-up">
+                <h1 class="relative mb-4 text-3xl font-black leading-tight text-gray-900 sm:text-6xl xl:mb-8">Build with professionals!</h1>
+                <p class="pr-0 mb-8 text-base text-gray-600 sm:text-lg xl:text-xl lg:pr-20">Are you ready to be a part of the building process and make your idea come to life?</p>
+                <a href="#services" class="relative self-start inline-block w-auto px-8 py-4 mx-auto mt-0 text-base font-bold text-white bg-blue-400 border-t border-gray-200 rounded-md shadow-xl sm:mt-1 lg:mx-0 hover-scale hover:bg-blue-600 hover:text-white">Go Exploring!</a>
+                <div class="flex-col hidden mt-12 sm:flex lg:mt-24">
+                    <p class="mb-4 text-sm font-medium tracking-widest text-gray-500 uppercase">Expertise:</p>
+                    <div class="flex justify-center gap-8">
+                        <!-- HTML -->
+                        <div class="flex items-center justify-center flex-col mt-2 text-base text-gray-600 transform transition-all duration-300 floating">
+                            <i class="fab fa-html5 text-orange-500 text-4xl mb-2"></i>
+                            <span class="text-lg">HTML</span>
+                        </div>
+
+                        <!-- CSS -->
+                        <div class="flex items-center justify-center flex-col mt-2 text-base text-gray-600 transform transition-all duration-300 floating">
+                            <i class="fab fa-css3-alt text-blue-500 text-4xl mb-2"></i>
+                            <span class="text-lg">CSS</span>
+                        </div>
+
+                        <!-- Python -->
+                        <div class="flex items-center justify-center flex-col mt-2 text-base text-gray-600 transform transition-all duration-300 floating">
+                            <i class="fab fa-python text-yellow-500 text-4xl mb-2"></i>
+                            <span class="text-lg">Python</span>
+                        </div>
+
+                        <!-- Node.js -->
+                        <div class="flex items-center justify-center flex-col mt-2 text-base text-gray-600 transform transition-all duration-300 floating">
+                            <i class="fab fa-node text-green-500 text-4xl mb-2"></i>
+                            <span class="text-lg">Node.js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative z-50 flex items-center justify-start w-full h-full space-x-6 lg:w-1/2">
+                <div class="container relative left-0 w-full max-w-xs lg:max-w-sm hover-scale">
+                    <img src="images/Bill.png" class="w-full h-auto object-contain rounded-lg shadow-2xl transition-shadow duration-300">
+                </div>
+                <div class="container relative left-0 w-full max-w-xs lg:max-w-sm hover-scale">
+                    <img src="images/Sheila.png" class="w-full h-auto object-contain rounded-lg shadow-2xl transition-shadow duration-300">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Section End -->
+
+    <!-- BEGIN SERVICES SECTION -->
+    <div id="services" class="relative w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
+        <div class="container flex flex-col items-center justify-between h-full max-w-6xl mx-auto" data-aos="fade-up">
+            <h2 class="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase">Our Services</h2>
+            <h3
+                class="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl">
+                Provided Services</h3>
+            <div class="flex flex-col w-full mt-0 lg:flex-row sm:mt-10 lg:mt-20">
+
+                <div class="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
+                    <!-- Service 1 -->
+                    <div class="relative overflow-hidden rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-6" data-aos="fade-right" data-aos-delay="100">
+                        <div class="flex h-[180px] flex-col justify-between rounded-md">
+                            <svg viewBox="0 0 24 24" class="h-12 w-12 fill-current">
+                                <path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 0 1-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 0 0-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.25 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 0 0-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 0 1-.206.214c-.075.037-.14.044-.495.044H7.81l-.108-.068a.438.438 0 0 1-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 0 1 .174-.143c.096-.047.134-.051.54-.051.478 0 .558.018.682.154.035.038 1.337 1.999 2.895 4.361a10760.433 10760.433 0 0 0 4.735 7.17l1.9 2.879.096-.063a12.317 12.317 0 0 0 2.466-2.163 11.944 11.944 0 0 0 2.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.859-8.292-8.208-9.695a12.597 12.597 0 0 0-2.499-.523A33.119 33.119 0 0 0 11.573 0zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 0 1 .237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 0 1 .233-.296c.096-.05.13-.054.5-.054z"></path>
+                            </svg>
+                            <div class="space-y-2">
+                                <h3 class="font-bold">Web Development</h3>
+                                <p class="text-sm text-muted-foreground">Building robust and dynamic websites using modern frameworks like React and Next.js.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="relative overflow-hidden rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex h-[180px] flex-col justify-between rounded-md">
+                            <svg viewBox="0 0 24 24" class="h-12 w-12 fill-current">
+                                <path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38a2.167 2.167 0 0 0-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44a23.476 23.476 0 0 0-3.107-.534A23.892 23.892 0 0 0 12.769 4.7c1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442a22.73 22.73 0 0 0-3.113.538 15.02 15.02 0 0 1-.254-1.42c-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87a25.64 25.64 0 0 1-4.412.005 26.64 26.64 0 0 1-1.183-1.86c-.372-.64-.746-1.31-1.12-1.946-.372-.66-.74-1.304-1.09-1.95.35-.645.73-1.29 1.102-1.933.418-.666.814-1.311 1.218-1.883zm-.06 1.946a23.417 23.417 0 0 0 2.437.035c-.743-.615-1.503-1.256-2.264-1.877-.07.26-.13.525-.19.785z"></path>
+                            </svg>
+                            <div class="space-y-2">
+                                <h3 class="font-bold">Cloud Solutions</h3>
+                                <p class="text-sm text-muted-foreground">Optimizing and scaling your business infrastructure using cloud technologies like AWS, GCP, and Azure.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="relative overflow-hidden rounded-lg border bg-white select-none hover:shadow hover:shadow-teal-200 p-6" data-aos="fade-left" data-aos-delay="300">
+                        <div class="flex h-[180px] flex-col justify-between rounded-md">
+                            <svg viewBox="0 0 24 24" class="h-12 w-12 fill-current">
+                                <path d="M12 22c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10-4.5 10-10 10zM7 11h10v2H7z"></path>
+                            </svg>
+                            <div class="space-y-2">
+                                <h3 class="font-bold">Digital Marketing</h3>
+                                <p class="text-sm text-muted-foreground">Strategies to grow your online presence and boost engagement through SEO, content marketing, and paid campaigns.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END SERVICES SECTION -->
+
+
+    <!-- Team Section -->
+    <section id="team" class="relative w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
+        <div class="container px-6 py-10 mx-auto flex flex-col items-center justify-between h-full max-w-6xl">
+            <h2 class="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase" data-aos="fade-right">Our Executives</h2>
+            <h3 class="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl" data-aos="fade-left">
+                Our Team Executives
+            </h3>
+            <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2">
+                <!-- First Executive Card -->
+                <div class="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-200 dark:border-gray-700 dark:hover:border-transparent" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex flex-col sm:-mx-4 sm:flex-row items-center">
+                        <img class="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/Bill.png" alt="">
+                        <div class="mt-4 sm:mx-4 sm:mt-0 text-center sm:text-left">
+                            <h1 class="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">Bill Variacion</h1>
+                            <p class="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">Design Director</p>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">With expertise in HTML, CSS, Python, and Node.js, I create custom web solutions that merge innovative design with robust functionality. From developing visually striking front-end interfaces to engineering scalable and efficient back-end systems, I ensure every project delivers high performance and a seamless user experience, guided by a design-focused approach..</p>
+                    <div class="flex mt-4 content-around -mx-2">
+                        <!-- GitHub Icon -->
+                        <a href="https://github.com" class="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white" aria-label="GitHub">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 3C16.41 3 20 6.59 20 12C20 15.87 17.36 19.27 14.03 20.47C13.29 20.67 13 20.04 13 19.34V17.49C13 16.81 13.42 16.19 14 15.93C15.77 15.1 15.2 13.25 13.61 13.25C12.89 13.25 12.23 13.81 12 14.46C11.77 13.81 11.11 13.25 10.39 13.25C8.8 13.25 8.23 15.1 10 15.93C10.58 16.19 11 16.81 11 17.49V19.34C11 20.04 10.71 20.67 9.97 20.47C6.64 19.27 4 15.87 4 12C4 6.59 7.59 3 12 3Z"></path>
+                            </svg>
+                        </a>
+                        <!-- Stack Overflow Icon -->
+                        <a href="https://stackoverflow.com" class="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white" aria-label="Stack Overflow">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 2H4C3.45 2 3 2.45 3 3V21C3 21.55 3.45 22 4 22H20C20.55 22 21 21.55 21 21V3C21 2.45 20.55 2 20 2ZM9 17H7V15H9V17ZM9 13H7V11H9V13ZM9 9H7V7H9V9ZM13 17H11V15H13V17ZM13 13H11V11H13V13ZM13 9H11V7H13V9ZM17 17H15V15H17V17ZM17 13H15V11H17V13ZM17 9H15V7H17V9Z"></path>
+                            </svg>
+                        </a>
+                        <!-- LinkedIn Icon -->
+                        <a href="https://linkedin.com" class="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white" aria-label="LinkedIn">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 3C2.9 3 2 3.9 2 5V19C2 20.1 2.9 21 4 21H20C21.1 21 22 20.1 22 19V5C22 3.9 21.1 3 20 3H4ZM4 19V5H20V19H4ZM6 7C6.55 7 7 7.45 7 8C7 8.55 6.55 9 6 9C5.45 9 5 8.55 5 8C5 7.45 5.45 7 6 7ZM6 11H8V17H6V11ZM10 11H12V17H10V11ZM14 11H16V17H14V11ZM18 11H20V17H18V11Z"></path>
+                            </svg>
+                        </a>
+                        <!-- Twitter Icon -->
+                        <a href="https://twitter.com" class="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white" aria-label="Twitter">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.498 4.429c-.883.391-1.834.654-2.832.774 1.018-.609 1.798-1.574 2.165-2.723-.952.564-2.003.978-3.123 1.197-.896-.952-2.173-1.545-3.595-1.545-2.722 0-4.926 2.227-4.926 4.963 0 .39.045.765.128 1.13-4.095-.205-7.725-2.163-10.145-5.144-.423.724-.664 1.561-.664 2.456 0 1.697.86 3.197 2.163 4.075-.798-.026-1.548-.244-2.203-.61v.062c0 2.37 1.688 4.347 3.936 4.796-.412.111-.846.171-1.291.171-.315 0-.623-.03-.924-.086.624 1.95 2.453 3.37 4.604 3.414-1.679 1.307-3.795 2.085-6.078 2.085-.394 0-.785-.023-1.171-.069 2.179 1.406 4.774 2.222 7.546 2.222 9.054 0 14.014-7.494 14.014-13.986 0-.213 0-.426-.014-.637.962-.702 1.79-1.578 2.447-2.571z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <!-- Second Executive Card -->
+                <div class="px-12 py-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-200 dark:border-gray-700 dark:hover:border-transparent" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex flex-col sm:-mx-4 sm:flex-row items-center">
+                        <img class="flex-shrink-0 object-cover w-24 h-24 rounded-full sm:mx-4 ring-4 ring-gray-300" src="images/Sheila.png" alt="">
+                        <div class="mt-4 sm:mx-4 sm:mt-0 text-center sm:text-left">
+                            <h1 class="text-xl font-semibold text-gray-700 capitalize md:text-2xl dark:text-white group-hover:text-white">Sheila Berces</h1>
+                            <p class="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">Tech Lead</p>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">A technology expert specializing in designing scalable architectures, leading development teams, and delivering innovative solutions. With strong expertise in guiding projects from concept to completion, I ensure technical excellence, foster collaboration, and drive impactful results.</p>
+                    <div class="flex mt-4 content-around -mx-2">
+                        <!-- GitHub Icon -->
+                        <a href="https://github.com" class="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white" aria-label="GitHub">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 3C16.41 3 20 6.59 20 12C20 15.87 17.36 19.27 14.03 20.47C13.29 20.67 13 20.04 13 19.34V17.49C13 16.81 13.42 16.19 14 15.93C15.77 15.1 15.2 13.25 13.61 13.25C12.89 13.25 12.23 13.81 12 14.46C11.77 13.81 11.11 13.25 10.39 13.25C8.8 13.25 8.23 15.1 10 15.93C10.58 16.19 11 16.81 11 17.49V19.34C11 20.04 10.71 20.67 9.97 20.47C6.64 19.27 4 15.87 4 12C4 6.59 7.59 3 12 3Z"></path>
+                            </svg>
+                        </a>
+                        <!-- Stack Overflow Icon -->
+                        <a href="https://stackoverflow.com" class="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white" aria-label="Stack Overflow">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 2H4C3.45 2 3 2.45 3 3V21C3 21.55 3.45 22 4 22H20C20.55 22 21 21.55 21 21V3C21 2.45 20.55 2 20 2ZM9 17H7V15H9V17ZM9 13H7V11H9V13ZM9 9H7V7H9V9ZM13 17H11V15H13V17ZM13 13H11V11H13V13ZM13 9H11V7H13V9ZM17 17H15V15H17V17ZM17 13H15V11H17V13ZM17 9H15V7H17V9Z"></path>
+                            </svg>
+                        </a>
+                        <!-- LinkedIn Icon -->
+                        <a href="https://linkedin.com" class="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white" aria-label="LinkedIn">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 3C2.9 3 2 3.9 2 5V19C2 20.1 2.9 21 4 21H20C21.1 21 22 20.1 22 19V5C22 3.9 21.1 3 20 3H4ZM4 19V5H20V19H4ZM6 7C6.55 7 7 7.45 7 8C7 8.55 6.55 9 6 9C5.45 9 5 8.55 5 8C5 7.45 5.45 7 6 7ZM6 11H8V17H6V11ZM10 11H12V17H10V11ZM14 11H16V17H14V11ZM18 11H20V17H18V11Z"></path>
+                            </svg>
+                        </a>
+                        <!-- Twitter Icon -->
+                        <a href="https://twitter.com" class="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white" aria-label="Twitter">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.498 4.429c-.883.391-1.834.654-2.832.774 1.018-.609 1.798-1.574 2.165-2.723-.952.564-2.003.978-3.123 1.197-.896-.952-2.173-1.545-3.595-1.545-2.722 0-4.926 2.227-4.926 4.963 0 .39.045.765.128 1.13-4.095-.205-7.725-2.163-10.145-5.144-.423.724-.664 1.561-.664 2.456 0 1.697.86 3.197 2.163 4.075-.798-.026-1.548-.244-2.203-.61v.062c0 2.37 1.688 4.347 3.936 4.796-.412.111-.846.171-1.291.171-.315 0-.623-.03-.924-.086.624 1.95 2.453 3.37 4.604 3.414-1.679 1.307-3.795 2.085-6.078 2.085-.394 0-.785-.023-1.171-.069 2.179 1.406 4.774 2.222 7.546 2.222 9.054 0 14.014-7.494 14.014-13.986 0-.213 0-.426-.014-.637.962-.702 1.79-1.578 2.447-2.571z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Start Projects -->
+    <div id="projects" class="relative w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
+        <div class="container flex flex-col items-center justify-between h-full max-w-6xl mx-auto" data-aos="fade-up">
+            <h2 class="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase" data-aos="fade-right">Our Projects</h2>
+            <h3
+                class="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl" 
+                data-aos="fade-left">
+                Existing Projects
+            </h3>
+            <div class="flex flex-col w-full mt-0 lg:flex-row sm:mt-10 lg:mt-20">
+                <div class="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
+                    <!-- Project Card 1 -->
+                    <div class="project-card w-[300px] rounded-md border bg-white dark:bg-gray-800 shadow-lg transition-all duration-500 transform hover:scale-110 hover:shadow-2xl relative z-0"
+                        data-aos="zoom-in" data-aos-delay="100">
+                        <img
+                            src="https://www.springboard.com/blog/wp-content/uploads/2022/03/what-is-a-coding-project.png"
+                            alt="Laptop"
+                            class="h-[200px] w-full rounded-t-md object-cover">
+                        <div class="p-4">
+                            <h1 class="inline-flex items-center text-lg font-semibold text-gray-900 dark:text-gray-100">
+                                Task Manager
+                            </h1>
+                            <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+                                A task management application built with Python and Flask, featuring task creation, updates, and deletion. Utilizing SQLite for data storage, this project showcases my skills in API development, database integration, and creating user-friendly interfaces.
+                            </p>
+                            <div class="mt-4">
+                                <a href="#" class="inline-flex items-center text-gray-900 dark:text-gray-100 border border-gray-700 py-2 px-6 gap-2 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-700 transition-all duration-500 transform hover:scale-105">
+                                    <span>See More</span>
+                                    <svg class="w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        viewBox="0 0 24 24" class="w-6 h-6 ml-2">
+                                        <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="project-card w-[300px] rounded-md border bg-white dark:bg-gray-800 shadow-lg transition-all duration-500 transform hover:scale-110 hover:shadow-2xl relative z-0"
+                        data-aos="zoom-in" data-aos-delay="200">
+                        <img
+                            src="https://www.springboard.com/blog/wp-content/uploads/2022/03/linkedin.png"
+                            alt="Laptop"
+                            class="h-[200px] w-full rounded-t-md object-cover">
+                        <div class="p-4">
+                            <h1 class="inline-flex items-center text-lg font-semibold text-gray-900 dark:text-gray-100">
+                                App Dashboard
+                            </h1>
+                            <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+                                A dynamic web application built with Node.js and React, designed to provide real-time data analytics and insights. The app features an intuitive user interface, data visualization tools, and seamless integration with APIs to deliver a responsive and engaging user experience.
+
+
+                            </p>
+                            <div class="mt-4">
+                                <a href="#" class="inline-flex items-center text-gray-900 dark:text-gray-100 border border-gray-700 py-2 px-6 gap-2 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-700 transition-all duration-500 transform hover:scale-105">
+                                    <span>See More</span>
+                                    <svg class="w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        viewBox="0 0 24 24" class="w-6 h-6 ml-2">
+                                        <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="project-card w-[300px] rounded-md border bg-white dark:bg-gray-800 shadow-lg transition-all duration-500 transform hover:scale-110 hover:shadow-2xl relative z-0"
+                        data-aos="zoom-in" data-aos-delay="300">
+                        <img
+                            src="https://www.springboard.com/blog/wp-content/uploads/2022/03/simple-calculator-1.png"
+                            alt="Laptop"
+                            class="h-[200px] w-full rounded-t-md object-cover">
+                        <div class="p-4">
+                            <h1 class="inline-flex items-center text-lg font-semibold text-gray-900 dark:text-gray-100">
+                                Calculator App
+                            </h1>
+                            <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">
+                                A feature-rich, interactive calculator built with HTML, CSS, and JavaScript. This web app supports basic and scientific calculations, providing users with a responsive interface and smooth performance. It demonstrates my ability to design user-friendly interfaces and integrate complex mathematical functions.
+                            </p>
+                            <div class="mt-4">
+                                <a href="#" class="inline-flex items-center text-gray-900 dark:text-gray-100 border border-gray-700 py-2 px-6 gap-2 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-700 transition-all duration-500 transform hover:scale-105">
+                                    <span>See More</span>
+                                    <svg class="w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        viewBox="0 0 24 24" class="w-6 h-6 ml-2">
+                                        <path d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Projects -->
+     
+
+    <!-- Start Contact -->
+    <div id="contact">
+        <form action="" method="post">
+            <section class="py-24">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="grid lg:grid-cols-2 grid-cols-1 gap-8">
+                        <div class="lg:mb-0 mb-10">
+                            <div class="group w-full h-full">
+                                <div class="relative h-full">
+                                    <!-- Smaller image -->
+                                    <img src="images/team1.png" alt="ContactUs tailwind section" class="w-full h-auto lg:w-96 lg:h-auto lg:rounded-l-2xl rounded-2xl bg-blend-multiply bg-indigo-700"/>
+                                    <div class="absolute bottom-0 w-full lg:p-11 p-5">
+                                        <div class="bg-white rounded-lg p-6 block">
+                                            <a href="javascript:;" class="flex items-center mb-6">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M22.3092 18.3098C22.0157 18.198 21.8689 18.1421 21.7145 18.1287C21.56 18.1154 21.4058 18.1453 21.0975 18.205L17.8126 18.8416C17.4392 18.9139 17.2525 18.9501 17.0616 18.9206C16.8707 18.891 16.7141 18.8058 16.4008 18.6353C13.8644 17.2551 12.1853 15.6617 11.1192 13.3695C10.9964 13.1055 10.935 12.9735 10.9133 12.8017C10.8917 12.6298 10.9218 12.4684 10.982 12.1456L11.6196 8.72559C11.6759 8.42342 11.7041 8.27233 11.6908 8.12115C11.6775 7.96998 11.6234 7.82612 11.5153 7.5384L10.6314 5.18758C10.37 4.49217 10.2392 4.14447 9.95437 3.94723C9.6695 3.75 9.29804 3.75 8.5551 3.75H5.85778C4.58478 3.75 3.58264 4.8018 3.77336 6.06012C4.24735 9.20085 5.64674 14.8966 9.73544 18.9853C14.0295 23.2794 20.2151 25.1426 23.6187 25.884C24.9335 26.1696 26.0993 25.1448 26.0993 23.7985V21.2824C26.0993 20.5428 26.0993 20.173 25.9034 19.8888C25.7076 19.6046 25.362 19.4729 24.6708 19.2096L22.3092 18.3098Z" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <h5 class="text-black text-base font-normal leading-6 ml-5">+63-2-8123-4567</h5>
+                                            </a>
+                                            <a href="https://veilmail.io/irish-geoff" class="flex items-center mb-6">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M2.81501 8.75L10.1985 13.6191C12.8358 15.2015 14.1544 15.9927 15.6032 15.9582C17.0519 15.9237 18.3315 15.0707 20.8905 13.3647L27.185 8.75M12.5 25H17.5C22.214 25 24.5711 25 26.0355 23.5355C27.5 22.0711 27.5 19.714 27.5 15C27.5 10.286 27.5 7.92893 26.0355 6.46447C24.5711 5 22.214 5 17.5 5H12.5C7.78595 5 5.42893 5 3.96447 6.46447C2.5 7.92893 2.5 10.286 2.5 15C2.5 19.714 2.5 22.0711 3.96447 23.5355C5.42893 25 7.78595 25 12.5 25Z" stroke="#4F46E5" stroke-width="2" stroke-linecap="round"/>
+                                                </svg>
+                                                <h5 class="text-black text-base font-normal leading-6 ml-5">buildupteam@gmail.com</h5>
+                                            </a>
+                                            <a href="javascript:;" class="flex items-center">
+                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M25 12.9169C25 17.716 21.1939 21.5832 18.2779 24.9828C16.8385 26.6609 16.1188 27.5 15 27.5C13.8812 27.5 13.1615 26.6609 11.7221 24.9828C8.80612 21.5832 5 17.716 5 12.9169C5 10.1542 6.05357 7.5046 7.92893 5.55105C9.8043 3.59749 12.3478 2.5 15 2.5C17.6522 2.5 20.1957 3.59749 22.0711 5.55105C23.9464 7.5046 25 10.1542 25 12.9169Z" stroke="#4F46E5" stroke-width="2"/>
+                                                    <path d="M17.5 11.6148C17.5 13.0531 16.3807 14.219 15 14.219C13.6193 14.219 12.5 13.0531 12.5 11.6148C12.5 10.1765 13.6193 9.01058 15 9.01058C16.3807 9.01058 17.5 10.1765 17.5 11.6148Z" stroke="#4F46E5" stroke-width="2"/>
+                                                </svg>
+                                                <h5 class="text-black text-base font-normal leading-6 ml-5"> South Campus - Rizal Albay District, Legazpi City 4500 Philippines</h5>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-5 lg:p-11 lg:rounded-r-2xl rounded-2xl">
+                            <h2 class="text-indigo-600 font-manrope text-4xl font-semibold leading-10 mb-11">Send Us A Message</h2>
+                            <input type="text" class="w-full h-12 text-gray-600 placeholder-gray-400 shadow-sm bg-transparent text-lg font-normal leading-7 rounded-full border border-gray-200 focus:outline-none pl-4 mb-10" placeholder="Name">
+                            <input type="text" class="w-full h-12 text-gray-600 placeholder-gray-400 shadow-sm bg-transparent text-lg font-normal leading-7 rounded-full border border-gray-200 focus:outline-none pl-4 mb-10" placeholder="Email">
+                            <input type="text" class="w-full h-12 text-gray-600 placeholder-gray-400 shadow-sm bg-transparent text-lg font-normal leading-7 rounded-full border border-gray-200 focus:outline-none pl-4 mb-10" placeholder="Phone">
+                            <div class="flex justify-between gap-6">
+                                <input type="text" class="w-full h-12 text-gray-600 placeholder-gray-400 shadow-sm bg-transparent text-lg font-normal leading-7 rounded-full border border-gray-200 focus:outline-none pl-4" placeholder="Subject">
+                                <input type="text" class="w-full h-12 text-gray-600 placeholder-gray-400 shadow-sm bg-transparent text-lg font-normal leading-7 rounded-full border border-gray-200 focus:outline-none pl-4" placeholder="Location">
+                            </div>
+                            <textarea rows="5" class="w-full text-gray-600 placeholder-gray-400 shadow-sm bg-transparent text-lg font-normal leading-7 rounded-2xl border border-gray-200 focus:outline-none pl-4 mt-6 mb-10" placeholder="Message"></textarea>
+                            <button type="submit" class="w-full h-12 bg-indigo-600 text-white text-lg font-semibold rounded-full transition duration-200 hover:bg-indigo-700">Send Message</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+    
+    <!-- End Contact-->
+
+   <!--comments-->
+<section id="comments" class="relative w-full px-8 py-10 border-t border-gray-200 md:py-16 lg:py-24 xl:py-40 xl:px-0">
+    <div class="container px-6 py-10 mx-auto flex flex-col items-center justify-between h-full max-w-6xl">
+        <h2 class="my-5 text-base font-medium tracking-tight text-indigo-500 uppercase" data-aos="fade-right">Customer Says</h2>
+        <h3 class="max-w-2xl px-5 mt-2 text-3xl font-black leading-tight text-center text-gray-900 sm:mt-0 sm:px-0 sm:text-6xl" data-aos="fade-left">
+            Feel closer
+        </h3>
+        
+        <!-- Comment List -->
+        <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-3" id="comments-list" data-aos="fade-up" data-aos-delay="300">
+            <!-- Comments will be dynamically inserted here -->
+        </div>
+    
+        <!-- Add New Comment Form -->
+        <form id="add-comment-form" class="bg-white p-6 rounded-lg shadow-md w-full max-w-xl mx-auto mt-12" data-aos="zoom-in" data-aos-delay="500">
+            <h3 class="text-lg font-bold mb-4">Add a comment</h3>
+            
+            <!-- Name Input -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="name">Name</label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="name" type="text" placeholder="Enter your name">
+            </div>
+            
+            <!-- Comment Textarea -->
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="comment">Comment</label>
+                <textarea
+                    class="shadow appearance-none border rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="comment" rows="3" placeholder="Enter your comment"></textarea>
+            </div>
+            
+            <!-- Submit Button -->
+            <button
+                class="relative self-start inline-block w-auto px-6 py-2 text-base font-bold text-white bg-blue-400 border-t border-gray-200 rounded-md shadow-xl sm:mt-1 lg:mx-0 hover-scale hover:bg-blue-600 hover:text-white"
+                type="submit">
+                Submit
+            </button>
+        </form>            
+    </div>
+</section>
+
+<!--End Comments-->    
+
+    <!-- Footer -->
+    <footer class="px-4 pt-12 pb-8 text-white bg-white border-t border-gray-200">
+        <div class="container flex flex-col justify-between max-w-6xl px-4 mx-auto overflow-hidden lg:flex-row">
+            <div class="w-full pl-12 mr-4 text-left lg:w-1/4 sm:text-center sm:pl-0 lg:text-left">
+                <img src="images/Logo.png" alt="Logo" width="100px">
+                <p class="mt-6 mr-4 text-base text-gray-500">Building the better version of your vision
+                </p>
+            </div>
+            <div class="block w-full pl-10 mt-6 text-sm lg:w-3/4 sm:flex lg:mt-0">
+                <ul class="flex flex-col w-full p-0 font-medium text-left text-gray-700 list-none">
+                    <li class="inline-block px-3 py-2 mt-5 font-bold tracking-wide text-gray-800 uppercase md:mt-0">
+                        Product</li>
+                    <li><a href="#_"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Features</a>
+                    </li>
+                    <li><a href="#_"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Integrations</a>
+                    </li>
+                    <li><a href="#_"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Pricing</a>
+                    </li>
+                    <li><a href="#_"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">FAQ</a></li>
+                </ul>
+                <ul class="flex flex-col w-full p-0 font-medium text-left text-gray-700 list-none">
+                    <li class="inline-block px-3 py-2 mt-5 font-bold tracking-wide text-gray-800 uppercase md:mt-0">
+                        Company</li>
+                    <li><a href="#_"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Privacy</a>
+                    </li>
+                    <li><a href="#_" class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Terms
+                            of
+                            Service</a></li>
+                </ul>
+                <ul class="flex flex-col w-full p-0 font-medium text-left text-gray-700 list-none">
+                    <li class="inline-block px-3 py-2 mt-5 font-bold tracking-wide text-gray-800 uppercase md:mt-0">
+                        TailwindCSS
+                    </li>
+                    <li><a href="https://tailwindui.com/components"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Tailwind
+                            Components</a></li>
+                    <li><a href="https://tailwindui.com/components"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Tailwind
+                            Templates</a></li>
+                    <li><a href="https://tailwindui.com/componentss"
+                            class="inline-block px-3 py-2 text-gray-500 no-underline hover:text-gray-600">Tails</a></li>
+                </ul>
+                <div class="flex flex-col w-full text-gray-700">
+                    <div class="inline-block px-3 py-2 mt-5 font-bold text-gray-800 uppercase md:mt-0">Follow Us</div>
+                    <div class="flex justify-start pl-4 mt-2">
+                        <a class="flex items-center block mr-6 text-gray-400 no-underline hover:text-gray-600"
+                            target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/dwclegazpi">
+                            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M23.998 12c0-6.628-5.372-12-11.999-12C5.372 0 0 5.372 0 12c0 5.988 4.388 10.952 10.124 11.852v-8.384H7.078v-3.469h3.046V9.356c0-3.008 1.792-4.669 4.532-4.669 1.313 0 2.686.234 2.686.234v2.953H15.83c-1.49 0-1.955.925-1.955 1.874V12h3.328l-.532 3.469h-2.796v8.384c5.736-.9 10.124-5.864 10.124-11.853z" />
+                            </svg>
+                        </a>
+                        <a class="flex items-center block mr-6 text-gray-400 no-underline hover:text-gray-600"
+                            target="_blank" rel="noopener noreferrer" href="https://www.dwc-legazpi.edu">
+                            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M23.954 4.569a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.691 8.094 4.066 6.13 1.64 3.161a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.061a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.937 4.937 0 004.604 3.417 9.868 9.868 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.936 9.936 0 002.46-2.548l-.047-.02z" />
+                            </svg>
+                        </a>
+                        <a class="flex items-center block text-gray-400 no-underline hover:text-gray-600"
+                            target="_blank" rel="noopener noreferrer" href="http://www.dwc-legazpi.edu">
+                            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pt-6 mt-10 text-center text-gray-500 border-t border-gray-100">© 2024 BuildUp. All rights
+            reserved.</div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+        particlesJS.load('particles-js', 'path-to-particles-config.json', function() {
+            console.log('Particles.js loaded');
+        });
+            // Simulating comment data with userId to track the author of each comment
+        let comments = [
+            { id: 1, name: "Jose Mari Chan", date: "April 17, 2023", comment: "Nice Service.", userId: "user2" },
+            { id: 2, name: "Marries Cabral", date: "April 16, 2023", comment: "Skeptical at first but worth it!", userId: "user3" },
+            { id: 3, name: "CoCo Martini", date: "April 15, 2023", comment: "I have a different opinion.", userId: "user4" }
+        ];
+
+        // Simulate the logged-in user ID
+        const loggedInUserId = "user1"; //logged in user is 'user1'
+
+        // Function to display all comments
+        function displayComments() {
+            const commentsList = document.getElementById('comments-list');
+            commentsList.innerHTML = '';  // Clear existing comments
+
+            comments.forEach(comment => {
+                const commentElement = document.createElement('div');
+                commentElement.classList.add('bg-white', 'p-4', 'rounded-lg', 'shadow-md', 'comment-item');
+                commentElement.setAttribute('data-id', comment.id);
+
+                let editDeleteButtons = '';
+                
+                // If the logged-in user is the author (based on userId)
+                if (loggedInUserId === comment.userId) {
+                    editDeleteButtons = `
+                        <div class="flex space-x-4 mt-2">
+                            <button class="edit-btn text-cyan-500 hover:text-cyan-700 font-bold">Edit</button>
+                            <button class="delete-btn text-red-500 hover:text-red-700 font-bold">Delete</button>
+                        </div>
+                    `;
+                }
+
+                commentElement.innerHTML = `
+                    <div class="flex items-center">
+                        <i class="fas fa-user-circle text-indigo-500 text-2xl mr-4"></i>
+                        <div>
+                            <h3 class="text-lg font-bold">${comment.name}</h3>
+                            <p class="text-gray-700 text-sm mb-2">Posted on ${comment.date}</p>
+                            <p class="text-gray-700">${comment.comment}</p>
+                            ${editDeleteButtons}  <!-- Edit/Delete buttons if the user is the author -->
+                        </div>
+                    </div>
+                `;
+
+                commentsList.appendChild(commentElement);
+            });
+        }
+
+        // Handle comment form submission 
+        document.getElementById('add-comment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const commentText = document.getElementById('comment').value;
+
+            if (name && commentText) {
+                const newComment = {
+                    id: comments.length + 1, 
+                    name: name,
+                    comment: commentText,
+                    date: new Date().toLocaleDateString(),
+                    userId: loggedInUserId
+                };
+
+                comments.push(newComment); 
+                displayComments();
+
+                document.getElementById('add-comment-form').reset();
+            }
+        });
+
+        // Handle Edit Button
+        document.addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('edit-btn')) {
+                const commentId = e.target.closest('.comment-item').getAttribute('data-id');
+                const commentToEdit = comments.find(c => c.id == commentId);
+                const newCommentText = prompt("Edit your comment:", commentToEdit.comment);
+                
+                if (newCommentText) {
+                    commentToEdit.comment = newCommentText;
+                    displayComments(); 
+                }
+            }
+        });
+
+        //Delete Button
+        document.addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('delete-btn')) {
+                const commentId = e.target.closest('.comment-item').getAttribute('data-id');
+                const commentIndex = comments.findIndex(c => c.id == commentId);
+
+                if (commentIndex > -1) {
+                    comments.splice(commentIndex, 1);
+                    displayComments();
+                }
+            }
+        });
+
+        window.onload = function() {
+            displayComments(); 
+        };
+    </script>
+</body>
+</html>
